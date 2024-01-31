@@ -4,13 +4,13 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t my-flask .'
+        sh 'docker build -t myflaskimg .'
         sh 'docker tag my-flask $DOCKER_BFLASK_IMAGE'
       }
     }
     stage('Test') {
       steps {
-        sh 'docker run my-flask python -m pytest app/tests/'
+        sh 'docker run myflaskimg python -m pytest app/tests/'
       }
     }
     stage('Deploy') {
